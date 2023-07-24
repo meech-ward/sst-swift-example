@@ -1,0 +1,68 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug SST Start",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/sst",
+      "runtimeArgs": [
+        "start",
+        "--increase-timeout"
+      ],
+      "console": "integratedTerminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "env": {}
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Debug HelloLambda (packages/functions/HelloLambda)",
+      "program": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda/.build/debug/HelloLambda",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda",
+      "preLaunchTask": "swift: Build Debug HelloLambda (packages/functions/HelloLambda)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Release HelloLambda (packages/functions/HelloLambda)",
+      "program": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda/.build/release/HelloLambda",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda",
+      "preLaunchTask": "swift: Build Release HelloLambda (packages/functions/HelloLambda)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Debug Hel (packages/functions/HelloLambda)",
+      "program": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda/.build/debug/Hel",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda",
+      "preLaunchTask": "swift: Build Debug Hel (packages/functions/HelloLambda)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "sourceLanguages": [
+        "swift"
+      ],
+      "name": "Release Hel (packages/functions/HelloLambda)",
+      "program": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda/.build/release/Hel",
+      "args": [],
+      "cwd": "${workspaceFolder:swift-sst}/packages/functions/HelloLambda",
+      "preLaunchTask": "swift: Build Release Hel (packages/functions/HelloLambda)"
+    }
+  ]
+}

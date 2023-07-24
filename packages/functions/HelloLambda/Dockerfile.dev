@@ -1,0 +1,31 @@
+FROM swift:5.8.1-amazonlinux2 as builder
+
+ARG target_name
+
+RUN yum -y install git jq tar zip openssl-devel
+
+# Add the Runtime Interface Client
+RUN yum install -y unzip procps && \
+  curl -Lo aws-lambda-rie https://github.com/aws/aws-lambda-runtime-interface-emulator/releases/latest/download/aws-lambda-rie && \
+  chmod +x aws-lambda-rie && \
+  mv aws-lambda-rie /usr/bin/
+
+RUN curl -sL https://rpm.nodesource.com/setup_16.x |  bash - && \
+  yum install -y nodejs && \
+  npm i -g nodemon@latest
+
+WORKDIR /code
+
+# Resolve dependencies
+COPY Package.swift .
+RUN swift package resolve
+
+# Build the package
+ADD /Sources/ ./Sources/
+
+# Set environment variable
+ENV TARGET_NAME=$target_name
+COPY /execute.sh ./execute.sh
+RUN chmod +x execute.sh
+
+ENTRYPOINT nodemon -L --exec "./execute.sh" --watch /code/Sources --ext swift
