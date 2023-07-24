@@ -10,7 +10,6 @@ struct MyLambda: SimpleLambdaHandler {
   }
 
   func handle(_ request: APIGatewayV2Request, context: LambdaContext) async throws -> Response {
-
-    return Response(message: "Hello Lambda")
+    return Response(message: "Hello Lambda From Swift!")
   }
 }

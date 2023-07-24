@@ -4,8 +4,9 @@ import { API } from "./stacks/MyStack";
 export default {
   config(_input) {
     return {
-      name: "swift-sst",
-      region: "us-east-1",
+      name: "swift-sst-test",
+      region: "us-west-2",
+      profile: "meech-ward",
     };
   },
   stacks(app) {
